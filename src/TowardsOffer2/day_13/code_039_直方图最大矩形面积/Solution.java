@@ -38,9 +38,4 @@ class Solution {
         return ans;
     }
 
-    public static void main(String[] args) {
-        int[] arr = {2,1,5,6,2,3};
-        Solution solution = new Solution();
-        System.out.println(solution.largestRectangleArea(arr));
-    }
 }
