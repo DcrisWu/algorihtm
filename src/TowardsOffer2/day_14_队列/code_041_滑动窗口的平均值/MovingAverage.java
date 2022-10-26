@@ -34,9 +34,9 @@ class MovingAverage {
 
     public static void main(String[] args) {
         MovingAverage movingAverage = new MovingAverage(3);
-        System.out.println(movingAverage.next(3));
         System.out.println(movingAverage.next(1));
         System.out.println(movingAverage.next(10));
+        System.out.println(movingAverage.next(3));
         System.out.println(movingAverage.next(5));
     }
 }
