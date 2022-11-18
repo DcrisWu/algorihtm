@@ -1,4 +1,4 @@
-package TowardsOffer2.day_39.code_114_外星文字典;
+package TowardsOffer2.day_39_图.code_114_外星文字典;
 
 import java.util.*;
 
