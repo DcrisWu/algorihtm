@@ -1,4 +1,4 @@
-package competition.day_9_18.code_6180;
+package competition.day_2022_9_18.code_6180;
 
 public class Solution {
     public int smallestEvenMultiple(int n) {

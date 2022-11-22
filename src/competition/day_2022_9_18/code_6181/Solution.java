@@ -1,4 +1,4 @@
-package competition.day_9_18.code_6181;
+package competition.day_2022_9_18.code_6181;
 
 public class Solution {
     public int longestContinuousSubstring(String s) {

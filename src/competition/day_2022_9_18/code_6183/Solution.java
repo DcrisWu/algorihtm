@@ -1,4 +1,4 @@
-package competition.day_9_18.code_6183;
+package competition.day_2022_9_18.code_6183;
 
 public class Solution {
     public static void main(String[] args) {

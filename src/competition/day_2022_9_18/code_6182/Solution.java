@@ -1,4 +1,4 @@
-package competition.day_9_18.Solution.code_6182;
+package competition.day_2022_9_18.code_6182;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
