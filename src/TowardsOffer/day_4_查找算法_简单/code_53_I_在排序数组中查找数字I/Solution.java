@@ -1,4 +1,4 @@
-package TowardsOffer.day_4_查找算法.code_53_I_在排序数组中查找数字I;
+package TowardsOffer.day_4_查找算法_简单.code_53_I_在排序数组中查找数字I;
 
 /**
  * completion time = 2022.11.23

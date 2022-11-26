@@ -1,4 +1,4 @@
-package TowardsOffer.day_4_查找算法.code_03_数组中重复的数字;
+package TowardsOffer.day_4_查找算法_简单.code_03_数组中重复的数字;
 
 import java.util.Arrays;
 
