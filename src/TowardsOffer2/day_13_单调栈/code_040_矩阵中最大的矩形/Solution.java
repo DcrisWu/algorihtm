@@ -59,4 +59,10 @@ class Solution {
         return ans;
     }
 
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        String[] arr = {"10100","10111","11111","10010"};
+        System.out.println(solution.maximalRectangle(arr));
+    }
+
 }

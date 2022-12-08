@@ -29,4 +29,9 @@ class Solution {
         }
         return count;
     }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.numDistinct("rabbbit", "rabbit"));
+    }
 }
