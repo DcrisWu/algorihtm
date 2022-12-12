@@ -10,8 +10,10 @@ class Solution {
         for (int i = 0; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
                 if (p.charAt(j - 1) == '*') {
+                    // 不匹配和匹配的情况下，都满足这个公式
                     f[i][j] = f[i][j - 2];
                     if (matches(s, p, i, j - 1)) {
+                        // 匹配 1 个或者 n 个，都是由前面的结果递推出来的
                         f[i][j] = f[i][j] || f[i - 1][j];
                     }
                 } else {
