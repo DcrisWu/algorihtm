@@ -1,4 +1,4 @@
-package daily.year_2023.March.code_1653_使字符串平衡的最少删除次数;
+package daily.year_2023.March.day_6_code_1653_使字符串平衡的最少删除次数;
 
 /**
  * completion time = 2023.3.6

@@ -1,5 +1,8 @@
-package daily.year_2023.March.code_面试题05_02_二进制数转字符串;
+package daily.year_2023.March.day_2_code_面试题05_02_二进制数转字符串;
 
+/**
+ * completion time = 2023.3.2
+ */
 class Solution {
     public String printBin(double num) {
         StringBuilder ans = new StringBuilder("0.");
