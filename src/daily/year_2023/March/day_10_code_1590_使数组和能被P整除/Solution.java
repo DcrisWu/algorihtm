@@ -31,10 +31,4 @@ class Solution {
         // 不能全删
         return ans == nums.length ? -1 : ans;
     }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        int[] arr = {13, 1, 27, 23, 22, 11, 15, 30, 4, 2, 8, 32, 31, 18, 34, 20, 21};
-        System.out.println(solution.minSubarray(arr, 148));
-    }
 }
