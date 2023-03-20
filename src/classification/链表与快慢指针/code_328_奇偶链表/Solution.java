@@ -1,0 +1,54 @@
+package classification.链表与快慢指针.code_328_奇偶链表;
+
+import Pack.Pair;
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
+/**
+ * completion time = 2023.3.20
+ */
+class Solution {
+    /**
+     * 奇偶链表，只要将链表分为一个奇链表和一个偶链表，然后再将奇链表的尾部连上偶链表的头部即可
+     * Attention: 偶链表的尾部最后要指向null，不然会存在循环
+     */
+    public ListNode oddEvenList(ListNode head) {
+        // 如果节点数量 <= 2，直接返回即可
+        if (head == null || head.next == null || head.next.next == null) {
+            return head;
+        }
+        ListNode oddHead = head, evenHead = head.next;
+        ListNode odd = oddHead, even = evenHead;
+        ListNode now = even.next;
+        int index = 1;
+        while (now != null) {
+            if (index % 2 == 1) {
+                odd.next = now;
+                odd = odd.next;
+            } else {
+                even.next = now;
+                even = even.next;
+            }
+            index++;
+            now = now.next;
+        }
+        odd.next = evenHead;
+        even.next = null;
+        return oddHead;
+    }
+}
