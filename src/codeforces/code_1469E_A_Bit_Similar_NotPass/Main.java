@@ -1,4 +1,4 @@
-package codeforces.code_1469E_A_Bit_Similar;
+package codeforces.code_1469E_A_Bit_Similar_NotPass;
 
 import java.util.HashSet;
 import java.util.Scanner;
