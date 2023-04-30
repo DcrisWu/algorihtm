@@ -1,4 +1,4 @@
-package competition.leetcode_weekly.No_642_day_2023_4_23.code_6392_使数组所有元素变成1的最少操作次数;
+package competition.leetcode_weekly.No_342_day_2023_4_23.code_6392_使数组所有元素变成1的最少操作次数;
 
 /**
  * completion time = 2023.4.24

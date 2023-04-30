@@ -1,4 +1,4 @@
-package competition.leetcode_weekly.No_642_day_2023_4_23.code_6391_倍数求和;
+package competition.leetcode_weekly.No_342_day_2023_4_23.code_6391_倍数求和;
 
 /**
  * completion time = 2023.4.23

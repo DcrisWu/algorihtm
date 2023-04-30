@@ -1,4 +1,4 @@
-package competition.leetcode_weekly.No_642_day_2023_4_23.code_6390_滑动子数组的美丽值;
+package competition.leetcode_weekly.No_342_day_2023_4_23.code_6390_滑动子数组的美丽值;
 
 /**
  * completion time = 2023.4.23
