@@ -1,4 +1,4 @@
-package codeforces.code_295B_Greg_and_Graph;
+package codeforces.code_295B;
 
 import java.util.Scanner;
 

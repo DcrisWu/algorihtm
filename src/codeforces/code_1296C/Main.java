@@ -1,4 +1,4 @@
-package codeforces.code_1296C_Yet_Another_Walking_Robot;
+package codeforces.code_1296C;
 
 import java.util.HashMap;
 import java.util.Map;

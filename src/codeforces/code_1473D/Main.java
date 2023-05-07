@@ -1,4 +1,4 @@
-package codeforces.code_1473D_Program;
+package codeforces.code_1473D;
 
 import java.util.*;
 

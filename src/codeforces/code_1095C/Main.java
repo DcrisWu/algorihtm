@@ -1,4 +1,4 @@
-package codeforces.code_1095C_Powers_Of_Two;
+package codeforces.code_1095C;
 
 import java.util.Scanner;
 

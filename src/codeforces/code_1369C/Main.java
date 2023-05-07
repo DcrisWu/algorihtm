@@ -1,4 +1,4 @@
-package codeforces.code_1369C_RationalLee;
+package codeforces.code_1369C;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package codeforces.code_1272D_Remove_One_Element;
+package codeforces.code_1272D;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package codeforces.code_1444A_Division;
+package codeforces.code_1444A;
 
 import java.util.Scanner;
 

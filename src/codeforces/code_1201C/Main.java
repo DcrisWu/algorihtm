@@ -1,4 +1,4 @@
-package codeforces.code_1201C_Maximum_Median;
+package codeforces.code_1201C;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package codeforces.code_1154E_Two_Teams;
+package codeforces.code_1154E;
 
 import java.util.*;
 

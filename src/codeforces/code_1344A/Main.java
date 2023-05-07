@@ -1,4 +1,4 @@
-package codeforces.code_1344A_Hilbert_Hotel;
+package codeforces.code_1344A;
 
 import java.util.Scanner;
 
