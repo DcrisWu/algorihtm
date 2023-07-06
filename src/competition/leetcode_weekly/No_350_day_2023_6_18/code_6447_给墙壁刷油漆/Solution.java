@@ -1,7 +1,8 @@
 package competition.leetcode_weekly.No_350_day_2023_6_18.code_6447_给墙壁刷油漆;
 
 /**
- * 没理解
+ * 从后往前遍历，每次选择刷油漆或者不刷油漆，直到刷完所有的墙壁
+ * 选择付费刷漆，就可以获得时间，获得的时间可以用来聘请免费工人
  */
 class Solution {
     private int inf = Integer.MAX_VALUE / 2;
