@@ -53,7 +53,7 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        int[] arr = {3, 4, 1, 2};
+        int[] arr = {2, 3, 1, 4};
         Solution solution = new Solution();
         System.out.println(solution.sumImbalanceNumbers(arr));
     }
