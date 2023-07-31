@@ -1,4 +1,4 @@
-package classification.最长递增子序列.code_1626_无矛盾的最佳球队;
+package classification.区间DP.code_1626_无矛盾的最佳球队;
 
 import java.util.Arrays;
 

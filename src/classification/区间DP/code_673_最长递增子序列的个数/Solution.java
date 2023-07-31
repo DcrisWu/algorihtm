@@ -1,4 +1,4 @@
-package classification.最长递增子序列.code_673_最长递增子序列的个数;
+package classification.区间DP.code_673_最长递增子序列的个数;
 
 /**
  * completion time = 2023.7.21
