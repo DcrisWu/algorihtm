@@ -1,4 +1,4 @@
-package classification.区间DP.code_1547_切棍子的最小成本;
+package classification.动态规划.区间DP.code_1547_切棍子的最小成本;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package classification.区间DP.code_1964_找出到每个位置为止最长的有效障碍赛跑路线;
+package classification.动态规划.区间DP.code_1964_找出到每个位置为止最长的有效障碍赛跑路线;
 
 import java.util.ArrayList;
 import java.util.List;

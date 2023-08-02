@@ -1,4 +1,4 @@
-package classification.区间DP.code_1000_合并石头的最低成本;
+package classification.动态规划.区间DP.code_1000_合并石头的最低成本;
 
 import java.util.Arrays;
 

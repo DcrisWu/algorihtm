@@ -1,4 +1,4 @@
-package classification.区间DP.code_1771_由子序列构造的最长回文串的长度;
+package classification.动态规划.区间DP.code_1771_由子序列构造的最长回文串的长度;
 
 /**
  * completion time = 2023.7.31
