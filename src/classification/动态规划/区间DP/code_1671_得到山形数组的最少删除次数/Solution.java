@@ -1,4 +1,4 @@
-package classification.最长递增子序列.code_1671_得到山形数组的最少删除次数;
+package classification.动态规划.区间DP.code_1671_得到山形数组的最少删除次数;
 
 /**
  * completion time = 2023.7.22

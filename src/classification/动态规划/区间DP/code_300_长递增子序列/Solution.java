@@ -1,4 +1,4 @@
-package classification.最长递增子序列.code_300_长递增子序列;
+package classification.动态规划.区间DP.code_300_长递增子序列;
 
 import java.util.ArrayList;
 import java.util.List;

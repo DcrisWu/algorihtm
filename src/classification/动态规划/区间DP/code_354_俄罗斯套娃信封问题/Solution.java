@@ -1,8 +1,7 @@
-package classification.最长递增子序列.code_354_俄罗斯套娃信封问题;
+package classification.动态规划.区间DP.code_354_俄罗斯套娃信封问题;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 class Solution {
