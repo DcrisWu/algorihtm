@@ -6,13 +6,14 @@ import java.util.*;
  * completion time = 2023.8.13
  */
 class Solution {
-    private static int mod = (int) (1e9 + 7);
-    private static int mx = (int) (1e5 + 1);
-    private static int[] omega = new int[mx];
 
-    static {
-        // 2,4,6,8,...都加一，然后omega[i] != 0，所以这些不是质数
+    private int mx = (int) (1e5 + 1);
+    private int[] omega;
+    private int mod = (int) (1e9 + 7);
+
+    void init() {
         for (int i = 2; i < mx; i++) {
+            // 如果是质数
             if (omega[i] == 0) {
                 for (int j = i; j < mx; j += i) {
                     omega[j]++;
@@ -23,15 +24,21 @@ class Solution {
 
     // 贡献法
     public int maximumScore(List<Integer> nums, int k) {
+        omega = new int[mx];
+        init();
         int n = nums.size();
-        int[] l = new int[n];// 左边 >= omega[i]的最大下标
-        int[] r = new int[n];// 右边 > omega[i]的最小下标
+        // 算出当前元素的贡献
+        int[] l = new int[n];// 左边 >= nums[i]的最大下标，不包括l[i]
+        int[] r = new int[n];// 右边 > nums[i]的最小坐标，不包括r[i]
         Arrays.fill(r, n);
+        // 单调递减栈
         Deque<Integer> stack = new ArrayDeque<>();
         stack.push(-1);
         for (int i = 0; i < n; i++) {
-            while (stack.size() > 1 && omega[nums.get(stack.peek())] < omega[nums.get(i)])
+            while (stack.size() > 1 && omega[nums.get(stack.peek())] < omega[nums.get(i)]) {
                 r[stack.pop()] = i;
+            }
+            // 弹出后的栈顶 >= nums[i]
             l[i] = stack.peek();
             stack.push(i);
         }
@@ -39,16 +46,18 @@ class Solution {
         for (int i = 0; i < n; i++) {
             ids[i] = i;
         }
+        // 根据元素大小降序排列
         Arrays.sort(ids, (i, j) -> nums.get(j) - nums.get(i));
         long ans = 1L;
-        for (int i : ids) {
-            long tot = (long) (i - l[i]) * (r[i] - i);
-            if (tot >= k) {
-                ans = ans * pow(nums.get(i), k) % mod;
+        for (Integer i : ids) {
+            int num = nums.get(i);
+            int tot = (i - l[i]) * (r[i] - i);
+            if (k <= tot) {
+                ans = ans * pow(num, k) % mod;
                 break;
             }
-            ans = ans * pow(nums.get(i), (int) tot) % mod;
-            k -= tot; // 更新剩余操作次数
+            ans = ans * pow(num, tot) % mod;
+            k -= tot;
         }
         return (int) ans;
     }
