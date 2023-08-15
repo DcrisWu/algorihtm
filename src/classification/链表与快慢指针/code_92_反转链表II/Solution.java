@@ -22,43 +22,37 @@ class ListNode {
  */
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
+        int count = 0;
         ListNode now = head;
-        ListNode first = null, last = null, begin = null;
-        int count = 1;
-        ListNode pre = null;
-        /*
-        关键是找到需要反转的链表的前一个和后一个
-         */
+        ListNode pre = null, tail = null;
         while (now != null) {
-            if (count == left) {
-                first = pre;
-                begin = now;
-            }
-            if (count == right) {
-                last = now.next;
-                break;
-            }
-            pre = now;
-            now = now.next;
             count++;
+            if (count == left - 1) {
+                pre = now;
+            }
+            if (count == right + 1) {
+                tail = now;
+            }
+            now = now.next;
         }
-        // 常规的反转链表
-        pre = null;
-        now = begin;
-        while (now != last) {
+        // 主要需要判断一下，反转后前面是否还有节点
+        if (pre == null) {
+            return reverse(head, tail);
+        }
+        pre.next = reverse(pre.next, tail);
+        return head;
+    }
+
+    // 将需要反转那部分链表抽象出来一个函数，传递开头以及一个终止符号
+    ListNode reverse(ListNode root, ListNode end) {
+        ListNode now = root;
+        ListNode pre = end;
+        while (now != end) {
             ListNode next = now.next;
             now.next = pre;
             pre = now;
             now = next;
         }
-        // 需要反转的链表反转前的第一个节点，一定要指向last，last 可以为 null 也可以为一个普通的节点
-        begin.next = last;
-        // 如果first为null，那么直接返回反转链表后的第一个节点
-        if (first == null){
-            return pre;
-        }
-        // 否则，first.next = pre
-        first.next = pre;
-        return head;
+        return pre;
     }
 }

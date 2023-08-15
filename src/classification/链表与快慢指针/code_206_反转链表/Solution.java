@@ -22,7 +22,8 @@ class Solution {
      * 当 now == null 时候，说明已经反转完成，pre 就是反转链表的 head
      */
     public ListNode reverseList(ListNode head) {
-        ListNode pre = null, now = head;
+        ListNode pre = null;
+        ListNode now = head;
         while (now != null) {
             ListNode next = now.next;
             now.next = pre;

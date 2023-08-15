@@ -1,5 +1,7 @@
 package classification.链表与快慢指针.code_876_链表的中间结点;
 
+import java.util.List;
+
 class ListNode {
     int val;
     ListNode next;
@@ -28,14 +30,15 @@ class Solution {
      * 只要正确处理奇数个还是偶数个节点就很简单，推荐在实际时候直接画图更容易理解
      */
     public ListNode middleNode(ListNode head) {
-        ListNode slow = head, fast = head;
+        ListNode slow = head;
+        ListNode fast = head;
         while (fast != null) {
             fast = fast.next;
-            if (fast == null) {
-                return slow;
+            if (fast == null){
+                break;
             }
-            fast = fast.next;
             slow = slow.next;
+            fast = fast.next;
         }
         return slow;
     }

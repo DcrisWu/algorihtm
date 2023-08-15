@@ -22,23 +22,23 @@ public class Solution {
      * 那么当 k = 链表中环的长度时候，快慢指针就会相遇，此时 slow == fast，就可以退出循环返回 true
      */
     public boolean hasCycle(ListNode head) {
-        if (head == null || head.next == null) {
+        if (head == null) {
             return false;
         }
-        ListNode slow = head.next;
-        if (slow.next == null) {
-            return false;
-        }
-        ListNode fast = slow.next;
-        while (slow != fast){
-            slow = slow.next;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null) {
             fast = fast.next;
-            if (fast == null){
+            if (fast == null) {
                 return false;
             }
+            slow = slow.next;
             fast = fast.next;
-            if (fast == null){
+            if (fast == null) {
                 return false;
+            }
+            if (slow == fast){
+                break;
             }
         }
         return true;
