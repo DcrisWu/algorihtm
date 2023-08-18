@@ -3,17 +3,18 @@ package ByteDance.code_41_缺失的第一个正数;
 class Solution {
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;
-        // 先把 <= 0的数全部编程n+1，不可以一边更新一边遍历，因为这样可能出现之前已经对下标i的数变为负数，后面又更新，变成了正数
         for (int i = 0; i < n; i++) {
+            // <= 0的数不影响结果
             if (nums[i] <= 0) {
                 nums[i] = n + 1;
             }
         }
+        // 遍历后的数都 > 0
         for (int i = 0; i < n; i++) {
-            // 先获取绝对值，因为nums[i]可能存在负值
-            int index = Math.abs(nums[i]) - 1;
-            if (index < n) {
-                nums[index] = -Math.abs(nums[index]);
+            // 获取索引下标
+            int k = Math.abs(nums[i]);
+            if (k <= n) {
+                nums[k - 1] = -Math.abs(nums[k - 1]);
             }
         }
         for (int i = 0; i < n; i++) {
@@ -26,7 +27,7 @@ class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] arr = {7, 8, 9, 11, 12};
+        int[] arr = {1,2,3};
         System.out.println(solution.firstMissingPositive(arr));
 
     }
