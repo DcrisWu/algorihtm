@@ -1,4 +1,4 @@
-package Random.code_1751_最多可以参加的会议数目II;
+package classification.会议室_会议加权.code_1751_最多可以参加的会议数目II;
 
 import java.util.Arrays;
 import java.util.Comparator;

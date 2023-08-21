@@ -1,4 +1,4 @@
-package Random.code_2402_会议室III;
+package classification.会议室_会议加权.code_2402_会议室III;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package Random.code_1235_规划兼职工作;
+package classification.会议室_会议加权.code_1235_规划兼职工作;
 
 import java.util.Arrays;
 import java.util.Comparator;
