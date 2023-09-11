@@ -31,28 +31,30 @@ class Solution {
         }
     }*/
 
+    private List<List<Integer>> res;
+    private boolean[] visit;
+    private int[] nums;
+
     public List<List<Integer>> permute(int[] nums) {
-        List<Integer> pre = new ArrayList<>();
-        List<List<Integer>> ans = new ArrayList<>();
-        boolean[] used = new boolean[nums.length];
-        backTrack(ans, pre, 0, nums,used);
-        return ans;
+        this.nums = nums;
+        res = new ArrayList<>();
+        visit = new boolean[nums.length];
+        dfs(new ArrayList<>());
+        return res;
     }
 
-    void backTrack(List<List<Integer>> ans, List<Integer> pre, int index, int[] nums, boolean[] used) {
-        if (index >= nums.length) {
-            ans.add(new ArrayList<>(pre));
-            return;
+    void dfs(List<Integer> pre) {
+        if (pre.size() == visit.length) {
+            res.add(new ArrayList<>(pre));
         }
-        for (int i = 0; i < nums.length; i++) {
-            if (used[i]) {
-                continue;
+        for (int i = 0; i < visit.length; i++) {
+            if (!visit[i]) {
+                pre.add(nums[i]);
+                visit[i] = true;
+                dfs(pre);
+                visit[i] = false;
+                pre.remove(pre.size() - 1);
             }
-            used[i] = true;
-            pre.add(nums[i]);
-            backTrack(ans, pre, index + 1, nums, used);
-            used[i] = false;
-            pre.remove(index);
         }
     }
 
