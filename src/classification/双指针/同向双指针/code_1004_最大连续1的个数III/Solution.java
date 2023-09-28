@@ -10,15 +10,14 @@ class Solution {
      * 如果右指针移动之后发现不符合要求，就左指针移动一位，在遇到符合要求的更长的子数组前，这个滑动窗口的长度都不会改变
      */
     public int longestOnes(int[] nums, int k) {
-        int historicalMax = 0;
         int one = 0;
         int i = 0;
         for (int j = 0; j < nums.length; j++) {
             if (nums[j] == 1) {
                 one++;
-                historicalMax = Math.max(historicalMax, one);
             }
-            if (j - i + 1 - historicalMax > k) {
+            if (j - i + 1 - one > k) {
+                // 替换的字符数 > k，只需要向右移一位，维护最大长度即可
                 if (nums[i] == 1) {
                     one--;
                 }
