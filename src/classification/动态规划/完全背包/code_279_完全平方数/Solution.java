@@ -10,11 +10,8 @@ class Solution {
         dp[0] = 0;
         // dp[i][j] = min(dp[i-1[j],dp[i][j-i*i]+1)
         for (int i = 1; i * i <= n; i++) {
-            // 背包容量的遍历在内层，似乎不是必要的，但这样做是没有错的
-            for (int j = 1; j <= n; j++) {
-                if (j >= i * i) {
-                    dp[j] = Math.min(dp[j], dp[j - i * i] + 1);
-                }
+            for (int j = i * i; j <= n; j++) {
+                dp[j] = Math.min(dp[j], dp[j - i * i] + 1);
             }
         }
         return dp[n];
