@@ -7,52 +7,74 @@ import java.util.List;
  * completion time = 2022.12.10
  */
 class Solution {
+    private int n;
+    private List<List<String>> res;
+
     public List<List<String>> solveNQueens(int n) {
-        char[][] dp = new char[n][n];
+        this.n = n;
+        res = new ArrayList<>();
+        List<StringBuilder> now = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                dp[i][j] = '.';
-            }
+            now.add(new StringBuilder().append(".".repeat(n)));
         }
-        List<List<String>> ans = new ArrayList<>();
-        backTrack(ans,dp,0);
-        return ans;
+        recursive(now, 0);
+        return res;
     }
 
-    boolean ifAllowInsert(char[][] dp, int row, int col) {
-        for (int i = row - 1; i >= 0; i--) {
-            if (dp[i][col] == 'Q') {
+    void recursive(List<StringBuilder> have, int row) {
+        if (row == n) {
+            List<String> now = new ArrayList<>();
+            for (StringBuilder sb : have) {
+                now.add(sb.toString());
+            }
+            res.add(now);
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            if (check(have, row, i)) {
+                have.get(row).setCharAt(i, 'Q');
+                recursive(have, row + 1);
+                have.get(row).setCharAt(i, '.');
+            }
+        }
+    }
+
+    boolean check(List<StringBuilder> have, int x, int y) {
+        // 检测行
+        StringBuilder sb = have.get(x);
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.charAt(i) == 'Q' && i != y) {
                 return false;
             }
         }
-        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-            if (dp[i][j] == 'Q') {
+        // 检测列
+        for (int i = 0; i < n; i++) {
+            if (have.get(i).charAt(y) == 'Q' && i != x) {
                 return false;
             }
         }
-        for (int i = row - 1, j = col + 1; i >= 0 && j < dp.length; i--, j++) {
-            if (dp[i][j] == 'Q') {
+        // 检测斜着的列
+        for (int i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--) {
+            if (have.get(i).charAt(j) == 'Q') {
+                return false;
+            }
+        }
+        for (int i = x + 1, j = y + 1; i < n && j < n; i++, j++) {
+            if (have.get(i).charAt(j) == 'Q') {
+                return false;
+            }
+        }
+        for (int i = x - 1, j = y + 1; i >= 0 && j < n; i--, j++) {
+            if (have.get(i).charAt(j) == 'Q') {
+                return false;
+            }
+        }
+        for (int i = x + 1, j = y - 1; i < n && j >= 0; i++, j--) {
+            if (have.get(i).charAt(j) == 'Q') {
                 return false;
             }
         }
         return true;
-    }
-
-    void backTrack(List<List<String>> ans, char[][] dp, int row) {
-        if (row >= dp.length) {
-            List<String> part = new ArrayList<>();
-            for (char[] chars : dp) {
-                part.add(new String(chars));
-            }
-            ans.add(part);
-        }
-        for (int i = 0; i < dp.length; i++) {
-            if (ifAllowInsert(dp, row, i)) {
-                dp[row][i] = 'Q';
-                backTrack(ans, dp, row + 1);
-                dp[row][i] = '.';
-            }
-        }
     }
 
     public static void main(String[] args) {

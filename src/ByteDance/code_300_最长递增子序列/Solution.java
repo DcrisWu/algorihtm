@@ -6,30 +6,28 @@ import java.util.List;
 class Solution {
     public int lengthOfLIS(int[] nums) {
         List<Integer> list = new ArrayList<>();
-        list.add(nums[0]);
-        for (int i = 1; i < nums.length; i++) {
-            insert(list, nums[i]);
+        for (int num : nums) {
+            insert(list, num);
         }
         return list.size();
     }
 
-    void insert(List<Integer> list, int num) {
+    void insert(List<Integer> list, int val) {
         int l = 0, r = list.size() - 1;
-        int ans = list.size();
-        // 找到第一个 >= num的数
+        int idx = r + 1;
         while (l <= r) {
             int mid = (l + r) >> 1;
-            if (list.get(mid) >= num) {
-                ans = mid;
+            if (list.get(mid) >= val) {
+                idx = mid;
                 r = mid - 1;
             } else {
                 l = mid + 1;
             }
         }
-        if (ans == list.size()) {
-            list.add(num);
+        if (idx == list.size()) {
+            list.add(val);
         } else {
-            list.set(ans, num);
+            list.set(idx, val);
         }
     }
 }

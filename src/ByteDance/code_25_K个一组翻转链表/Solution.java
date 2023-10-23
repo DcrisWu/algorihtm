@@ -22,46 +22,46 @@ class ListNode {
  */
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        int count = 0;
-        ListNode node = head;
-        while (node != null) {
-            count++;
-            node = node.next;
+        if (k == 1) {
+            return head;
         }
-        // 用一个节点，表示头，一定要初始化th.next = head
-        ListNode th = new ListNode();
-        th.next = head;
-        ListNode start = null;
-        // pre是用来表示反转后的前一段的最后节点
-        ListNode pre = th;
+        int cnt = 0;
         ListNode now = head;
-        for (int i = 0; i <= count; i++) {
-            if (i % k == 0) {
-                if (start != null) {
-                    ListNode nh = reverse(start, now);
-                    pre.next = nh;
-                    start.next = now;
-                    pre = start;
-                }
-                start = now;
-            }
-            if (i < count){
-                now = now.next;
-            }
+        while (now != null) {
+            cnt++;
+            now = now.next;
         }
-        return th.next;
+        now = head;
+        ListNode h = null;
+        ListNode pre = new ListNode();
+        ListNode res = pre;
+        for (int i = 0; i < cnt; i++) {
+            ListNode next = now.next;
+            if (i % k == 0) {
+                h = now;
+            } else if (i % k == k - 1) {
+                ListNode reverse = reverse(h, now.next);
+                pre.next = reverse;
+                pre = h;
+            }
+            now = next;
+        }
+        return res.next;
     }
 
+    // [head,tail)，反转链表，链表最后一个指向tail
     ListNode reverse(ListNode head, ListNode tail) {
-        ListNode pre = null;
-        while (head != tail) {
-            ListNode next = head.next;
-            head.next = pre;
-            pre = head;
-            head = next;
+        ListNode now = head;
+        ListNode pre = tail;
+        while (now != tail) {
+            ListNode next = now.next;
+            now.next = pre;
+            pre = now;
+            now = next;
         }
         return pre;
     }
+
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5};

@@ -33,19 +33,18 @@ class Solution {
 //    }
     public int maxProfit(int k, int[] prices) {
         int[][] dp = new int[k][2];
-        // dp[i][1]表示第i次交易之后持有股票，dp[i][0]表示第i次交易之后不持有股票
-        dp[0][1] = -prices[0];
-        dp[0][0] = 0;
-        for (int i = 1; i < k; i++) {
+        // 初始化第一天,dp[i][0]表示没有持有股票，也就是卖了，dp[i][1]就是持有
+        for (int i = 0; i < k; i++) {
             dp[i][1] = -prices[0];
             dp[i][0] = 0;
         }
         for (int i = 1; i < prices.length; i++) {
-            dp[0][1] = Math.max(dp[0][1], -prices[i]);
-            dp[0][0] = Math.max(dp[0][0], dp[0][1] + prices[i]);
+            // 每一天的第一次交易也需要特殊初始化
+            dp[0][0] = Math.max(dp[0][1] + prices[i], dp[0][0]);
+            dp[0][1] = Math.max(-prices[i], dp[0][1]);
             for (int j = 1; j < k; j++) {
-                dp[j][1] = Math.max(dp[j - 1][1], dp[j - 1][0] - prices[i]);
-                dp[j][0] = Math.max(dp[j - 1][0], dp[j - 1][1] + prices[i]);
+                dp[j][0] = Math.max(dp[j][1] + prices[i], dp[j][0]);
+                dp[j][1] = Math.max(dp[j - 1][0] - prices[i], dp[j][1]);
             }
         }
         return dp[k - 1][0];

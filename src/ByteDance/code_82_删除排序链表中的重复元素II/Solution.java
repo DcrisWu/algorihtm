@@ -1,5 +1,7 @@
 package ByteDance.code_82_删除排序链表中的重复元素II;
 
+import java.util.List;
+
 class ListNode {
     int val;
     ListNode next;
@@ -22,28 +24,25 @@ class ListNode {
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode nh = new ListNode();
-        nh.next = head;
-        ListNode pre = nh;
+        ListNode res = new ListNode();
+        res.next = head;
+        ListNode pre = res;
         ListNode now = head;
         while (now != null) {
-            ListNode start = null;
-            ListNode tail = null;
-            while (now.next != null && now.val == now.next.val) {
-                if (start == null) {
-                    start = now;
-                }
-                tail = now.next;
+            ListNode h = now;
+            while (now.next != null && now.next.val == h.val) {
                 now = now.next;
             }
-            if (start != null) {
-                pre.next = tail.next;
-            } else {
+            // 只有一个
+            if (now == h) {
                 pre = now;
+            } else {
+                // 存在重复，那就全部删除
+                pre.next = now.next;
             }
             now = now.next;
         }
-        return nh.next;
+        return res.next;
     }
 
     public static void main(String[] args) {

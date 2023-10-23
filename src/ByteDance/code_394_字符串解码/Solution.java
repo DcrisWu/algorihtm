@@ -7,31 +7,31 @@ import java.util.Deque;
  * completion time = 2023.8.19
  */
 class Solution {
+    // 递归解析 2[c] 格式
     public String decodeString(String s) {
         StringBuilder ans = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
-            // 如果是数字
-            if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            if (Character.isDigit(s.charAt(i))) {
                 int j = i;
-                for (; j < s.length() && s.charAt(j) >= '0' && s.charAt(j) <= '9'; j++) ;
+                while (j < s.length() && Character.isDigit(s.charAt(j))) {
+                    j++;
+                }
                 int times = Integer.parseInt(s.substring(i, j));
-                Deque<Character> stack = new ArrayDeque<>();
-                String sub = "";
+                // 这个栈是用来记录 []
+                Deque<Character> st = new ArrayDeque<>();
                 for (int k = j; k < s.length(); k++) {
-                    if (!stack.isEmpty() && stack.peek() == '[' && s.charAt(k) == ']') {
-                        stack.pop();
-                    } else if (s.charAt(k) == '[') {
-                        stack.push('[');
+                    if (s.charAt(k) == '[') {
+                        st.addLast('[');
+                    } else if (!st.isEmpty() && st.peekFirst() == '[' && s.charAt(k) == ']') {
+                        st.pollLast();
                     }
-                    if (stack.isEmpty()) {
-                        sub = decodeString(s.substring(j + 1, k));
-                        j = k;
+                    // 找到了一个子序列，就是[]内的序列
+                    if (st.isEmpty()) {
+                        String sub = decodeString(s.substring(j + 1, k));
+                        ans.append(sub.repeat(times));
+                        i = k;
                         break;
                     }
-                }
-                i = j;
-                for (int k = 0; k < times; k++) {
-                    ans.append(sub);
                 }
             } else {
                 ans.append(s.charAt(i));
@@ -41,6 +41,6 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().decodeString("3[a]2[bc]"));
+        System.out.println(new Solution().decodeString("3[a2[c]]"));
     }
 }

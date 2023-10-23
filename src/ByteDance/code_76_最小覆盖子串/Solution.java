@@ -1,5 +1,7 @@
 package ByteDance.code_76_最小覆盖子串;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,33 +10,36 @@ import java.util.Map;
  */
 class Solution {
     public String minWindow(String s, String t) {
-        Map<Character, Integer> tmap = new HashMap<>();
+        Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < t.length(); i++) {
-            tmap.put(t.charAt(i), tmap.getOrDefault(t.charAt(i), 0) + 1);
+            map.put(t.charAt(i), map.getOrDefault(t.charAt(i), 0) + 1);
         }
-        int diff = t.length();
-        Map<Character, Integer> smap = new HashMap<>();
-        int i = 0;
+        Map<Character, Integer> cnt = new HashMap<>();
+        int count = 0;
+        Deque<Integer> q = new ArrayDeque<>();
         String ans = "";
-        for (int j = 0; j < s.length(); j++) {
-            char c = s.charAt(j);
-            smap.put(c, smap.getOrDefault(c, 0) + 1);
-            if (smap.get(c) <= tmap.getOrDefault(c, 0)) {
-                diff--;
-            }
-            while (diff == 0) {
-                char f = s.charAt(i);
-                if (ans.equals("")) {
-                    ans = s.substring(i, j + 1);
-                } else if (j - i + 1 < ans.length()) {
-                    ans = s.substring(i, j + 1);
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                cnt.put(c, cnt.getOrDefault(c, 0) + 1);
+                q.addLast(i);
+                if (cnt.get(c) <= map.get(c)) {
+                    count++;
                 }
-                smap.put(f, smap.get(f) - 1);
-                Integer num = smap.get(f);
-                if (tmap.getOrDefault(f, 0) > num) {
-                    diff++;
+                while (count == t.length()) {
+                    if (ans.equals("")) {
+                        ans = s.substring(q.peekFirst(), i + 1);
+                    } else {
+                        if (i - q.peekFirst() + 1 < ans.length()) {
+                            ans = s.substring(q.peekFirst(), i + 1);
+                        }
+                    }
+                    Integer first = q.pollFirst();
+                    cnt.put(s.charAt(first), cnt.get(s.charAt(first)) - 1);
+                    if (cnt.get(s.charAt(first)) < map.get(s.charAt(first))) {
+                        count--;
+                    }
                 }
-                i++;
             }
         }
         return ans;
