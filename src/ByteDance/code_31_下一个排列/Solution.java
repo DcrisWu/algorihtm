@@ -12,22 +12,35 @@ class Solution {
         // 那么在找到所需要的 i 之前，nums[j:end)之间是一个递减序列
         // 在递减序列中，从后往前找到第一个符合nums[i] < nums[k]的 k
         // 交换nums[i]和nums[k]，然后对nums[j:end)进行排序
-        int len = nums.length;
-        int i = len - 2, j = len - 1, k = len - 1;
+        int n = nums.length;
+        int i = n - 2, j = n - 1;
         while (i >= 0 && nums[i] >= nums[j]) {
             i--;
             j--;
         }
-        // 不是最大的序列
-        if (i >= 0) {
-            while (nums[i] >= nums[k]) {
-                k--;
-            }
-            int temp = nums[i];
-            nums[i] = nums[k];
-            nums[k] = temp;
+        if (i < 0) {
+            Arrays.sort(nums);
+            return;
         }
-        // 对nums[j:end)进行排序
-        Arrays.sort(nums,j,len);
+        int l = j, r = n - 1;
+        int k = l;
+        while (l <= r) {
+            int mid = (l + r) >> 1;
+            if (nums[mid] > nums[i]) {
+                k = mid;
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        int temp = nums[k];
+        nums[k] = nums[i];
+        nums[i] = temp;
+        Arrays.sort(nums, j, n);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+        new Solution().nextPermutation(arr);
     }
 }

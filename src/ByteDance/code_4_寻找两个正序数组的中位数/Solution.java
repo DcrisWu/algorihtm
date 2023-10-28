@@ -1,9 +1,12 @@
 package ByteDance.code_4_寻找两个正序数组的中位数;
 
+/**
+ * completion time = 2023.10.28
+ */
 class Solution {
     public static void main(String[] args) {
-        int[] arr1 = {4, 5, 6};
-        int[] arr2 = {1, 2};
+        int[] arr2 = {0, 0};
+        int[] arr1 = {0, 0};
         Solution solution = new Solution();
         System.out.println(solution.findMedianSortedArrays(arr1, arr2));
     }
@@ -58,36 +61,30 @@ class Solution {
     }
 
     int getKthElement2(int[] nums1, int[] nums2, int k) {
+        // 如果能在nums1中找到，就直接返回
+        // 招不到就是在nums2中，因为都是排好序的，所以直接索引运算就可以了
         int l = 0, r = nums1.length - 1;
-        int index1 = -1;
-        int index2 = -1;
+        int idx1 = -1, idx2 = -1;
         while (l <= r) {
             int mid = (l + r) >> 1;
-            int target = nums1[mid];
-            int count2 = numsLessThan(nums2, target);
-            if (count2 + mid + 1 <= k) {
-                index1 = mid;
-                index2 = count2 - 1;
+            int cnt2 = numsLessThan(nums2, nums1[mid]);
+            if (cnt2 + mid + 1 <= k) {
+                idx1 = mid;
+                idx2 = cnt2 - 1;
                 l = mid + 1;
             } else {
                 r = mid - 1;
             }
         }
-        if (index1 + index2 + 2 == k) {
-            return nums1[index1];
+        // 第 k 个在 nums1
+        if (idx1 + idx2 + 2 == k) {
+            return nums1[idx1];
         }
-        l = index2 + 1;
-        r = nums2.length - 1;
-        while (l <= r) {
-            int mid = (l + r) >> 1;
-            if (index1 + mid + 2 <= k) {
-                index2 = mid;
-                l = mid + 1;
-            } else {
-                r = mid - 1;
-            }
-        }
-        return nums2[index2];
+        // 否则第 k 个在 nums2，而且一定是 >= idx2
+        // 在nums1中，<=nums1[idx1] < k个，<=nums1[idx+1] > k个
+        // 那么前 k 个数中，nums1一定占有 idx1 + 1个
+        // 那么第 k个数在 idx2 = k - (idx1 + 1) - 1 中
+        return nums2[k - idx1 - 2];
     }
 
     // <= target 的数量

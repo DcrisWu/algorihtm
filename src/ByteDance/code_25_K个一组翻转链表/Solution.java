@@ -1,5 +1,7 @@
 package ByteDance.code_25_K个一组翻转链表;
 
+import java.util.List;
+
 class ListNode {
     int val;
     ListNode next;
@@ -22,9 +24,6 @@ class ListNode {
  */
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        if (k == 1) {
-            return head;
-        }
         int cnt = 0;
         ListNode now = head;
         while (now != null) {
@@ -32,17 +31,19 @@ class Solution {
             now = now.next;
         }
         now = head;
-        ListNode h = null;
         ListNode pre = new ListNode();
         ListNode res = pre;
+        ListNode begin = null;
         for (int i = 0; i < cnt; i++) {
+            // 先把 now.next 记录下来，不然反转后会变化
             ListNode next = now.next;
             if (i % k == 0) {
-                h = now;
-            } else if (i % k == k - 1) {
-                ListNode reverse = reverse(h, now.next);
+                begin = now;
+            }
+            if (i % k == k - 1) {
+                ListNode reverse = reverse(begin, now.next);
                 pre.next = reverse;
-                pre = h;
+                pre = begin;
             }
             now = next;
         }
@@ -51,13 +52,13 @@ class Solution {
 
     // [head,tail)，反转链表，链表最后一个指向tail
     ListNode reverse(ListNode head, ListNode tail) {
-        ListNode now = head;
+        // 反转后，需要把头尾连接好
         ListNode pre = tail;
-        while (now != tail) {
-            ListNode next = now.next;
-            now.next = pre;
-            pre = now;
-            now = next;
+        while (head != tail) {
+            ListNode next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
         }
         return pre;
     }

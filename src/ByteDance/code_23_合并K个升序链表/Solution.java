@@ -1,60 +1,59 @@
 package ByteDance.code_23_合并K个升序链表;
 
+import java.util.*;
+
 /**
  * completion time = 2022.12.9
  */
 class Solution {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        return divide(lists, 0, lists.length - 1);
-    }
-
-    ListNode divide(ListNode[] lists, int begin, int end) {
-        if (begin > end) {
-            return null;
-        }
-        if (begin == end) {
-            return lists[begin];
-        }
-        if (begin + 1 == end) {
-            return merge(lists[begin], lists[end]);
-        }
-        int mid = (begin + end) >> 1;
-        return merge(divide(lists, begin, mid), divide(lists, mid + 1, end));
-    }
-
-    ListNode merge(ListNode l1, ListNode l2) {
-        if (l1 == null || l2 == null) {
-            return l1 == null ? l2 : l1;
-        }
-        ListNode head = null;
-        if (l1.val < l2.val) {
-            head = l1;
-            l1 = l1.next;
-        } else {
-            head = l2;
-            l2 = l2.next;
-        }
-        ListNode begin = head;
-        while (l1 != null && l2 != null) {
-            if (l1.val < l2.val) {
-                begin.next = l1;
-                begin = begin.next;
-                l1 = l1.next;
-            } else {
-                begin.next = l2;
-                begin = begin.next;
-                l2 = l2.next;
+        Queue<ListNode> q = new ArrayDeque<>();
+        for (ListNode node : lists) {
+            if (node != null) {
+                q.add(node);
             }
         }
-        if (l1 != null) {
-            begin.next = l1;
+        if (q.isEmpty()) {
+            return null;
         }
-        if (l2 != null) {
-            begin.next = l2;
+        while (q.size() > 1) {
+            int size = q.size();
+            size = size % 2 == 0 ? size : size - 1;
+            for (int i = 0; i < size; i++) {
+                ListNode first = q.poll();
+                i++;
+                if (i < size) {
+                    q.add(merge(first, q.poll()));
+                }
+            }
+
         }
-        return head;
+        return q.poll();
     }
+
+    ListNode merge(ListNode a, ListNode b) {
+        ListNode res = new ListNode();
+        ListNode pre = res;
+        while (a != null && b != null) {
+            if (a.val < b.val) {
+                pre.next = a;
+                a = a.next;
+            } else {
+                pre.next = b;
+                b = b.next;
+            }
+            pre = pre.next;
+        }
+        if (a != null) {
+            pre.next = a;
+        }
+        if (b != null) {
+            pre.next = b;
+        }
+        return res.next;
+    }
+
 }
 
 class ListNode {
