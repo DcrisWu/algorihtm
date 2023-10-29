@@ -5,6 +5,9 @@ import java.util.Comparator;
 import java.util.Deque;
 import java.util.PriorityQueue;
 
+/**
+ * completion time = 2023.10.29
+ */
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         /*// 优先队列，存的是下标
@@ -24,25 +27,21 @@ class Solution {
         }
         return ans;*/
 
+        int n = nums.length;
+        int[] ans = new int[n - k + 1];
         // 单调递减栈
         Deque<Integer> stack = new ArrayDeque<>();
-        int n = nums.length - k + 1;
-        for (int i = 0; i < k - 1; i++) {
-            while (!stack.isEmpty() && nums[i] >= nums[stack.peekLast()]) {
-                stack.pollLast();
-            }
-            stack.add(i);
-        }
-        int[] ans = new int[n];
         for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty() && nums[i + k - 1] >= nums[stack.peekLast()]) {
+            while (!stack.isEmpty() && nums[stack.peekLast()] <= nums[i]) {
                 stack.pollLast();
             }
-            stack.add(i + k - 1);
-            while (!stack.isEmpty() && stack.peekFirst() < i) {
+            stack.addLast(i);
+            while (!stack.isEmpty() && stack.peekFirst() + k <= i) {
                 stack.pollFirst();
             }
-            ans[i] = nums[stack.peekFirst()];
+            if (i - k + 1 >= 0) {
+                ans[i - k + 1] = nums[stack.peekFirst()];
+            }
         }
         return ans;
     }
