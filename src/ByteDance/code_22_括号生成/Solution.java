@@ -20,16 +20,17 @@ class Solution {
     void dfs(int left, int right, StringBuilder sb) {
         if (left == n && right == n) {
             res.add(sb.toString());
+            return;
         }
         if (left < n) {
             sb.append('(');
             dfs(left + 1, right, sb);
-            sb.delete(sb.length() - 1, sb.length());
+            sb.deleteCharAt(sb.length() - 1);
         }
         if (right < left) {
             sb.append(')');
             dfs(left, right + 1, sb);
-            sb.delete(sb.length() - 1, sb.length());
+            sb.deleteCharAt(sb.length() - 1);
         }
     }
 

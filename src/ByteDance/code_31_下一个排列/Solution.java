@@ -23,7 +23,7 @@ class Solution {
             return;
         }
         int l = j, r = n - 1;
-        int k = l;
+        int k = j;
         while (l <= r) {
             int mid = (l + r) >> 1;
             if (nums[mid] > nums[i]) {
@@ -33,9 +33,9 @@ class Solution {
                 r = mid - 1;
             }
         }
-        int temp = nums[k];
-        nums[k] = nums[i];
-        nums[i] = temp;
+        int temp = nums[i];
+        nums[i] = nums[k];
+        nums[k] = temp;
         Arrays.sort(nums, j, n);
     }
 

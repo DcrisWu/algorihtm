@@ -41,8 +41,8 @@ class Solution {
                 begin = now;
             }
             if (i % k == k - 1) {
-                ListNode reverse = reverse(begin, now.next);
-                pre.next = reverse;
+                pre.next = reverse(begin, now.next);
+                // 反转后的pre会发生变化，所以要在里面反转
                 pre = begin;
             }
             now = next;

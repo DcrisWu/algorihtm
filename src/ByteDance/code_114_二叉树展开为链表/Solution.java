@@ -23,8 +23,7 @@ class TreeNode {
  * completion time = 2023.10.29
  */
 class Solution {
-    private TreeNode res = new TreeNode();
-    private TreeNode pre = res;
+    private TreeNode pre = new TreeNode();
 
     public void flatten(TreeNode root) {
         if (root == null) {

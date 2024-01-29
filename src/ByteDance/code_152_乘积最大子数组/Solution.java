@@ -10,7 +10,7 @@ class Solution {
             int mx = max, mn = min;
             max = Math.max(Math.max(mx * nums[i], mn * nums[i]), nums[i]);
             min = Math.min(Math.min(mx * nums[i], mn * nums[i]), nums[i]);
-            ans = Math.max(ans, Math.max(max, min));
+            ans = Math.max(ans, max);
         }
         return ans;
     }

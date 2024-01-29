@@ -40,11 +40,11 @@ class Solution {
         }
         for (int i = 1; i < prices.length; i++) {
             // 每一天的第一次交易也需要特殊初始化
-            dp[0][0] = Math.max(dp[0][1] + prices[i], dp[0][0]);
-            dp[0][1] = Math.max(-prices[i], dp[0][1]);
+            dp[0][1] = Math.max(dp[0][1], -prices[i]);
+            dp[0][0] = Math.max(dp[0][0], dp[0][1] + prices[i]);
             for (int j = 1; j < k; j++) {
-                dp[j][0] = Math.max(dp[j][1] + prices[i], dp[j][0]);
-                dp[j][1] = Math.max(dp[j - 1][0] - prices[i], dp[j][1]);
+                dp[j][1] = Math.max(dp[j][1], dp[j - 1][0] - prices[i]);
+                dp[j][0] = Math.max(dp[j][0], dp[j][1] + prices[i]);
             }
         }
         return dp[k - 1][0];

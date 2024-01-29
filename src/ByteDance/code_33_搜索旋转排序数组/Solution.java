@@ -14,6 +14,7 @@ class Solution {
                 ans = mid;
                 break;
             }
+            // 在左边
             if (target >= nums[0]) {
                 if (nums[mid] < nums[0]) {
                     r = mid - 1;
@@ -25,9 +26,10 @@ class Solution {
                     }
                 }
             } else {
+                // 在右边
                 if (nums[mid] >= nums[0]) {
                     l = mid + 1;
-                }else {
+                } else {
                     if (nums[mid] < target) {
                         l = mid + 1;
                     } else {

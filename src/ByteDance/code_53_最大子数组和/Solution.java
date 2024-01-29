@@ -8,10 +8,8 @@ class Solution {
         int preSum = 0, min = 0, ans = nums[0];
         for (int num : nums) {
             preSum += num;
-            if (preSum - min > ans) {
-                ans = preSum - min;
-            }
-            min = Math.min(preSum, min);
+            ans = Math.max(preSum - min, ans);
+            min = Math.min(min, preSum);
         }
         return ans;
     }
