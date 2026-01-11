@@ -1,4 +1,4 @@
-package daily.year_2026.January.code_1339_分裂二叉树的最大乘积;
+package daily.year_2026.January.day_7_code_1339_分裂二叉树的最大乘积;
 
 class TreeNode {
     int val;
